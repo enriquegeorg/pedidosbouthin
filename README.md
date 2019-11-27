@@ -1,4 +1,4 @@
-# hunterco_desafio
+# huntercodesafio
 Desafio proposto para vaga de estagiário em desenvolvimento.
 
 How to start:
