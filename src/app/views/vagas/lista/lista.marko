@@ -5,7 +5,7 @@
     <body>
         <h1> Listagem de vagas </h1>
 
-        <table>
+        <table id="vagas">
             <tr>
                 <td>ID</td>
                 <td>Nome da Vaga</td>
@@ -19,7 +19,7 @@
                 <td>Valor Perdido</td>
                 <td>Motivo da Perda</td>
             </tr>
-                <tr for (vaga in data.vagas)>
+                <tr id="vaga_${vaga.id}"  for (vaga in data.vagas)>
                 <td>${vaga.id}</td>
                 <td>${vaga.job_type}</td>
                 <td>${vaga.client_id}</td>
@@ -31,7 +31,11 @@
                 <td>${vaga.periodo_cobranca}</td>
                 <td>${vaga.lost_value}</td>
                 <td>${vaga.refund_reason}</td>
+                <td><a href="/vagas/form/${vaga.id}">Editar</a></td>
+                <td><a href="#" data-ref="${vaga.id}" data-type="remocao">Remover</a></td>
             </tr>
         </table> 
+        <script src="estatico/js/remove-vaga.js">
+        </script>
     </body> 
 </html>

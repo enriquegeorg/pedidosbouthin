@@ -64,15 +64,27 @@ class VagaDao {
 
     atualiza(vaga) {
         return new Promise((resolve, reject) => {
+            console.log(vaga.id);
+            debugger;
             this._db.run(`
                 UPDATE vagas SET
+                job_type = ?,
+                client_id = ?,
+                candidate = ?,
+                value = ?,
                 refund_reason = ?,
                 billed_by = ?,
+                eventtype =?
                 WHERE id = ? 
             `,
             [
+                vaga.job_type,
+                vaga.client_id,
+                vaga.candidate,
+                vaga.value,
                 vaga.refund_reason,
                 vaga.billed_by,
+                vaga.eventtype,
                 vaga.id
             ],
             erro => {
@@ -87,7 +99,7 @@ class VagaDao {
 
     remove(id) {
 
-        return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
             this._db.run(
                 `
                     DELETE 
