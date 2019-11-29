@@ -10,13 +10,19 @@ class VagaDao {
                 job_type,
                 client_id,
                 candidate,
-                value
-            ) VALUES (?,?,?,?)`
+                value,
+                refund_reason,
+                billed_by,
+                eventtype
+            ) VALUES (?,?,?,?,?,?,?)`
             ,[
                 vaga.job_type,
                 vaga.client_id,
                 vaga.candidate,
-                vaga.value
+                vaga.value,
+                vaga.refund_reason,
+                vaga.billed_by,
+                vaga.eventtype,
             ],
             function(err) {
                 if(err) {

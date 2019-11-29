@@ -41,7 +41,7 @@ function render(input, out, __component, component, state) {
     marko_escapeXml(data.vaga.refund_reason) +
     "</textarea></div><div><label for=\"billed_by\">Nome de quem gerou a cobrança:</label><input type=\"text\" id=\"billed_by\" name=\"billed_by\" value=\"" +
     marko_escapeXmlAttr(data.vaga.billed_by) +
-    "\" placeholder=\"nome de quem gerou a cobranca\"></div><select name=\"eventtype\"><option value=\"CANDIDATE_SENT\">Candidato Enviado</option><option value=\"CANDIDATE_APPROVED\">Candidato Contratado</option></select><input type=\"submit\" value=\"Salvar\"></form>");
+    "\" placeholder=\"nome de quem gerou a cobranca\"></div><select name=\"events\"><option id=\"eventtype\" name=\"eventtype\" value=\"CANDIDATE_SENT\">Candidato Enviado</option><option id=\"eventtype\" name=\"eventtype\" value=\"CANDIDATE_APPROVED\">Candidato Contratado</option></select><input type=\"submit\" value=\"Salvar\"></form>");
 
   init_components_tag({}, out);
 
