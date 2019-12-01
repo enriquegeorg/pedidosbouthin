@@ -39,9 +39,21 @@ function render(input, out, __component, component, state) {
       marko_escapeXml(vaga.client_id) +
       "</td><td>" +
       marko_escapeXml(vaga.candidate) +
-      "</td><td>" +
-      marko_escapeXml(vaga.eventtype) +
-      "</td><td>" +
+      "</td>");
+
+    if (vaga.eventtype == "CANDIDATE_SENT") 
+
+    { 
+
+    out.w("<td>Candidato enviado</td>");
+
+    } else { 
+
+    out.w("<td>Candidato contratado</td>");
+
+    } 
+
+    out.w("<td>" +
       marko_escapeXml(vaga.dt_event) +
       "</td><td>" +
       marko_escapeXml(vaga.value) +
@@ -64,7 +76,7 @@ function render(input, out, __component, component, state) {
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "37");
+  await_reorderer_tag({}, out, __component, "38");
 
   out.w("</body> </html>");
 }

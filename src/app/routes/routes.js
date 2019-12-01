@@ -62,6 +62,7 @@ module.exports = (app) => {
         vagaDao.atualiza(req.body)
             .then(resp.redirect('/vagas'))
             .catch(erro => console.log(erro));
+        vagaDao.alteraValorPerdido(req.body.id);
     });
 
     app.delete('/vagas/:id', function(req,resp){

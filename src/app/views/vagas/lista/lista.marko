@@ -24,7 +24,12 @@
                 <td>${vaga.job_type}</td>
                 <td>${vaga.client_id}</td>
                 <td>${vaga.candidate}</td>
-                <td>${vaga.eventtype}</td>
+                <% if (vaga.eventtype == "CANDIDATE_SENT") %>
+                <% { %>
+                    <td>Candidato enviado</td>
+                <% } else { %>
+                    <td>Candidato contratado</td>
+                <% } %>
                 <td>${vaga.dt_event}</td>
                 <td>${vaga.value}</td>
                 <td>${vaga.billed_by}</td>

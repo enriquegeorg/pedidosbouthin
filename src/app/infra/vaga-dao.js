@@ -13,8 +13,9 @@ class VagaDao {
                 value,
                 refund_reason,
                 billed_by,
-                eventtype
-            ) VALUES (?,?,?,?,?,?,?)`
+                eventtype,
+                lost_value
+            ) VALUES (?,?,?,?,?,?,?,0)`
             ,[
                 vaga.job_type,
                 vaga.client_id,
@@ -118,8 +119,25 @@ class VagaDao {
                         return reject('Não foi possível remover a vaga!');
                     }
                     return resolve();
-                }
-            );
+            });
+        });
+    }
+
+    alteraValorPerdido(id){
+        return new Promise((resolve, reject) => {
+            this._db.run(
+                `
+                UPDATE vagas
+                SET lost_value = CASE WHEN (refund_reason != '' AND value != '0') THEN value ELSE lost_value END,
+                value= '0'
+                WHERE ID = ?
+                `, [id],
+                (erro) => {
+                    if (erro) {
+                        return reject('Não foi possível alterar valor perdido!');
+                    }
+                    return resolve();
+            });
         });
     }
 }
