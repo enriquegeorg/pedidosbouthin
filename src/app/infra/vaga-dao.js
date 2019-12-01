@@ -140,6 +140,26 @@ class VagaDao {
             });
         });
     }
+
+    valoresPorPeriodo(){
+        return new Promise((resolve, reject) => {
+            this._db.all(
+                `
+                SELECT 
+                strftime('%Y-%m', periodo_cobranca) as periodo, 
+                printf("%.2f", SUM(value)) as total_valor, printf("%.2f", 
+                SUM(lost_value)) as total_valor_perdido 
+                FROM vagas GROUP BY strftime('%Y-%m', periodo_cobranca)
+                `
+                ,
+                (erro,resultados) => {
+                   if (erro) return reject('Não foi possível calcular valores por periodo');
+                   
+                   return resolve(resultados);
+                }
+            )
+        });
+    }
 }
 
 module.exports = VagaDao;
