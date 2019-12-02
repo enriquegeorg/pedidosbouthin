@@ -12,6 +12,9 @@ module.exports = (app) => {
                 </head>
                 <body>
                     <h1> Hunter Co </h1>
+                    <a href="/vagas"> Lista de Vagas </a>
+                    <br>
+                    <a href="/dados"> Dados qualitativos e quantitativos </a>
                 </body> 
             </html>
             `
@@ -26,7 +29,19 @@ module.exports = (app) => {
                 {
                     vagas: vagas
                 })
-         ).catch(erro => console.log(erro));
+        ).catch(erro => console.log(erro));
+        
+ 
+    });
+
+    app.get('/dados', function(req, resp){
+        const vagaDao = new VagaDao(db);
+        vagaDao.valoresPorPeriodo().then(periodos => resp.marko(
+            require('../views/vagas/lista/dados.marko'),
+            {
+                periodos: periodos
+            })
+        ).catch(erro => console.log(erro));
     });
 
     app.get('/vagas/form', function(req,resp){

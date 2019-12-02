@@ -22,12 +22,26 @@ function render(input, out, __component, component, state) {
 
   component_globals_tag({}, out);
 
-  out.w("<h1> Listagem de vagas </h1><table id=\"vagas\"><tr><td>ID</td><td>Nome da Vaga</td><td>Nome do Cliente</td><td>Nome do candidato</td><td>Tipo do evento</td><td>Data e hora do evento</td><td>Valor cobrado</td><td>Quem gerou a cobrança</td><td>Ano/Periodo da cobrança</td><td>Valor Perdido</td><td>Motivo da Perda</td></tr>");
+  out.w("<h1> Listagem de vagas </h1><table id=\"valores\"><tr><td>Periodo</td><td>Valor</td><td>Valor Perdido</td></tr>");
 
-  var for__18 = 0;
+  var for__10 = 0;
+
+  marko_forEach(data.periodos, function(periodo) {
+    var keyscope__11 = "[" + ((for__10++) + "]");
+
+    out.w("<tr id=\"periodo_" +
+      marko_escapeXmlAttr(periodo.periodo) +
+      "\"><td>" +
+      marko_escapeXml(periodo.periodo) +
+      "</td></tr>");
+  });
+
+  out.w("</table><table id=\"vagas\"><tr><td>ID</td><td>Nome da Vaga</td><td>Nome do Cliente</td><td>Nome do candidato</td><td>Tipo do evento</td><td>Data e hora do evento</td><td>Valor cobrado</td><td>Quem gerou a cobrança</td><td>Ano/Periodo da cobrança</td><td>Valor Perdido</td><td>Motivo da Perda</td></tr>");
+
+  var for__27 = 0;
 
   marko_forEach(data.vagas, function(vaga) {
-    var keyscope__19 = "[" + ((for__18++) + "]");
+    var keyscope__28 = "[" + ((for__27++) + "]");
 
     out.w("<tr id=\"vaga_" +
       marko_escapeXmlAttr(vaga.id) +
@@ -76,7 +90,7 @@ function render(input, out, __component, component, state) {
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "38");
+  await_reorderer_tag({}, out, __component, "47");
 
   out.w("</body> </html>");
 }
