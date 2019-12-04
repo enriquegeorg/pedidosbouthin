@@ -18,35 +18,35 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
 function render(input, out, __component, component, state) {
   var data = input;
 
-  out.w("<html><head><meta charset=\"utf-8\"></head><body>");
+  out.w("<html><head><meta charset=\"utf-8\"><link rel=\"stylesheet\" href=\"/estatico/css/bootstrap.min.css\"><link rel=\"stylesheet\" href=\"/estatico/css/fontawesome.min.css\"><link rel=\"stylesheet\" href=\"/estatico/css/huntercodesafio.css\"></head><body>");
 
   component_globals_tag({}, out);
 
-  out.w("<h1> Dados qualitativos e quantitativos </h1><h3> Valores por periodo </h3><table id=\"valores\"><tr><td>Periodo</td><td>Valor</td><td>Valor Perdido</td></tr>");
+  out.w("<header class=\"cabecalhoPrincipal\"><div class=\"container\"><div class=\"row align-items-center\"><div class=\"col-4\"><h1 class=\"logo\"><img src=\"/estatico/imagens/logo-cabecalho.png\" alt=\"Hunter Co\" height=\"35px\" width=\"auto\"></h1></div><div class=\"cabecalhoPrincipal-navegacao col-8\"><a href=\"#\" class=\"login\"><i class=\"fas fa-sign-in-alt\"></i>Login</a></div></div></div></header><main class=\"conteudoPrincipal\"><div class=\"container\"><h1> Dados qualitativos e quantitativos </h1><h3> Valores por periodo </h3><table id=\"valores\" class=\"table table-striped table-hover\"><thead class=\"thead-dark\"><tr><td>Periodo</td><td>Valor</td><td>Valor Perdido</td></tr></thead>");
 
-  var for__11 = 0;
+  var for__26 = 0;
 
   marko_forEach(data.periodos, function(periodo) {
-    var keyscope__12 = "[" + ((for__11++) + "]");
+    var keyscope__27 = "[" + ((for__26++) + "]");
 
     out.w("<tr id=\"periodo_" +
       marko_escapeXmlAttr(periodo.periodo) +
       "\"><td>" +
       marko_escapeXml(periodo.periodo) +
-      "</td><td>" +
+      "</td><td>R$ " +
       marko_escapeXml(periodo.total_valor) +
-      "</td><td>" +
+      "</td><td>R$ " +
       marko_escapeXml(periodo.total_valor_perdido) +
       "</td></tr>");
   });
 
-  out.w("</table>");
+  out.w("</table></div></main><footer class=\"rodape\"><div class=\"container\"><div class=\"row align-items-center\"><div class=\"col-4\"><h1 class=\"logo\"><img src=\"/estatico/imagens/logo-rodape.png\" class=\"logo-rodape\"></h1></div><div class=\"col-8\"><ul class=\"redesSociais\"><li><a href=\"https://www.facebook.com/huntercofanpage/\" class=\"compartilhar-facebook\" target=\"_blank\">/HunterCoFanPage</a></li><li><a href=\"https://www.linkedin.com/company/hunterco/\" class=\"compartilhar-linkedin\" target=\"_blank\">/HunterCo</a></li></ul></div></div></div></footer>");
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "17");
+  await_reorderer_tag({}, out, __component, "44");
 
-  out.w("</body> </html>");
+  out.w("</body></html>");
 }
 
 marko_template._ = marko_renderer(render, {

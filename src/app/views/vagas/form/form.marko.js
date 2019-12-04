@@ -17,35 +17,35 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
 function render(input, out, __component, component, state) {
   var data = input;
 
-  out.w("<html><body>");
+  out.w("<html><head><meta charset=\"utf-8\"><link rel=\"stylesheet\" href=\"/estatico/css/bootstrap.min.css\"><link rel=\"stylesheet\" href=\"/estatico/css/fontawesome.min.css\"><link rel=\"stylesheet\" href=\"/estatico/css/huntercodesafio.css\"></head><body>");
 
   component_globals_tag({}, out);
 
-  out.w("<h1>Cadastro de Vagas</h1><form action=\"/vagas\" method=\"post\">");
+  out.w("<header class=\"cabecalhoPrincipal\"><div class=\"container\"><div class=\"row align-items-center\"><div class=\"col-4\"><h1 class=\"logo\"><img src=\"/estatico/imagens/logo-cabecalho.png\" alt=\"Hunter Co\" height=\"35px\" width=\"auto\"></h1></div><div class=\"cabecalhoPrincipal-navegacao col-8\"><a href=\"#\" class=\"login\"><i class=\"fas fa-sign-in-alt\"></i>Login</a></div></div></div></header><main class=\"conteudoPrincipal\"><div class=\"container\"><h1>Cadastro de Vagas</h1><form action=\"/vagas\" method=\"post\">");
 
   if (data.vaga.id) {
     out.w("<div><input type=\"hidden\" name=\"_method\" value=\"PUT\"><input type=\"hidden\" id=\"id\" name=\"id\" value=\"" +
       marko_escapeXmlAttr(data.vaga.id) +
-      "\"></div>");
+      "\" class=\"form-control\"></div>");
   }
 
-  out.w("<div><label for=\"job_type\">Nome da vaga:</label><input type=\"text\" id=\"job_type\" name=\"job_type\" value=\"" +
+  out.w("<div class=\"form-group\"><label for=\"job_type\">Nome da vaga:</label><input type=\"text\" id=\"job_type\" name=\"job_type\" value=\"" +
     marko_escapeXmlAttr(data.vaga.job_type) +
-    "\" placeholder=\"coloque o nome da vaga\"></div><div><label for=\"client_id\">Nome do cliente:</label><input type=\"text\" id=\"client_id\" name=\"client_id\" value=\"" +
+    "\" placeholder=\"coloque o nome da vaga\" class=\"form-control\"></div><div class=\"form-group\"><label for=\"client_id\">Nome do cliente:</label><input type=\"text\" id=\"client_id\" name=\"client_id\" value=\"" +
     marko_escapeXmlAttr(data.vaga.client_id) +
-    "\" placeholder=\"coloque o nome do cliente\"></div><div><label for=\"candidate\">Nome do candidato:</label><input type=\"text\" id=\"candidate\" name=\"candidate\" value=\"" +
+    "\" placeholder=\"coloque o nome do cliente\" class=\"form-control\"></div><div class=\"form-group\"><label for=\"candidate\">Nome do candidato:</label><input type=\"text\" id=\"candidate\" name=\"candidate\" value=\"" +
     marko_escapeXmlAttr(data.vaga.candidate) +
-    "\" placeholder=\"coloque o nome do candidato\"></div><div><label for=\"value\">Valor:</label><input type=\"text\" id=\"value\" name=\"value\" value=\"" +
+    "\" placeholder=\"coloque o nome do candidato\" class=\"form-control\"></div><div class=\"form-group\"><label for=\"value\">Valor:</label><input type=\"text\" id=\"value\" name=\"value\" value=\"" +
     marko_escapeXmlAttr(data.vaga.value) +
-    "\" placeholder=\"150.25\"></div><div><label for=\"refund_reason\">Motivo da perda:</label><textarea cols=\"20\" rows=\"10\" id=\"refund_reason\" name=\"refund_reason\" placeholder=\"descreva o motivo da perda\">" +
+    "\" placeholder=\"150.25\" class=\"form-control\"></div><div class=\"form-group\"><label for=\"refund_reason\">Motivo da perda:</label><textarea cols=\"20\" rows=\"10\" id=\"refund_reason\" name=\"refund_reason\" placeholder=\"descreva o motivo da perda\" class=\"form-control\">" +
     marko_escapeXml(data.vaga.refund_reason) +
-    "</textarea></div><div><label for=\"billed_by\">Nome de quem gerou a cobrança:</label><input type=\"text\" id=\"billed_by\" name=\"billed_by\" value=\"" +
+    "</textarea></div><div class=\"form-group\"><label for=\"billed_by\">Nome de quem gerou a cobrança:</label><input type=\"text\" id=\"billed_by\" name=\"billed_by\" value=\"" +
     marko_escapeXmlAttr(data.vaga.billed_by) +
-    "\" placeholder=\"nome de quem gerou a cobranca\"></div><select name=\"eventtype\"><option id=\"eventtype\" name=\"eventtype\" value=\"CANDIDATE_SENT\">Candidato Enviado</option><option id=\"eventtype\" name=\"eventtype\" value=\"CANDIDATE_APPROVED\">Candidato Contratado</option></select><input type=\"submit\" value=\"Salvar\"></form>");
+    "\" placeholder=\"nome de quem gerou a cobranca\" class=\"form-control\"></div><select name=\"eventtype\" class=\"form-group\"><option id=\"eventtype\" name=\"eventtype\" value=\"CANDIDATE_SENT\">Candidato Enviado</option><option id=\"eventtype\" name=\"eventtype\" value=\"CANDIDATE_APPROVED\">Candidato Contratado</option></select><br><input type=\"submit\" value=\"Salvar\" class=\"btn btn-primary\"></form></div></main><footer class=\"rodape\"><div class=\"container\"><div class=\"row align-items-center\"><div class=\"col-4\"><h1 class=\"logo\"><img src=\"/estatico/imagens/logo-rodape.png\" class=\"logo-rodape\"></h1></div><div class=\"col-8\"><ul class=\"redesSociais\"><li><a href=\"https://www.facebook.com/huntercofanpage/\" class=\"compartilhar-facebook\" target=\"_blank\">/HunterCoFanPage</a></li><li><a href=\"https://www.linkedin.com/company/hunterco/\" class=\"compartilhar-linkedin\" target=\"_blank\">/HunterCo</a></li></ul></div></div></div></footer>");
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "29");
+  await_reorderer_tag({}, out, __component, "58");
 
   out.w("</body></html>");
 }

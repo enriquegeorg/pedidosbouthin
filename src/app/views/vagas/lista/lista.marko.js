@@ -18,30 +18,16 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
 function render(input, out, __component, component, state) {
   var data = input;
 
-  out.w("<html><head><meta charset=\"utf-8\"></head><body>");
+  out.w("<html><head><meta charset=\"utf-8\"><link rel=\"stylesheet\" href=\"/estatico/css/bootstrap.min.css\"><link rel=\"stylesheet\" href=\"/estatico/css/fontawesome.min.css\"><link rel=\"stylesheet\" href=\"/estatico/css/huntercodesafio.css\"></head><body>");
 
   component_globals_tag({}, out);
 
-  out.w("<h1> Listagem de vagas </h1><table id=\"valores\"><tr><td>Periodo</td><td>Valor</td><td>Valor Perdido</td></tr>");
+  out.w("<header class=\"cabecalhoPrincipal\"><div class=\"container\"><div class=\"row align-items-center\"><div class=\"col-4\"><h1 class=\"logo\"><img src=\"/estatico/imagens/logo-cabecalho.png\" alt=\"Hunter Co\" height=\"35px\" width=\"auto\"></h1></div><div class=\"cabecalhoPrincipal-navegacao col-8\"><a href=\"#\" class=\"login\"><i class=\"fas fa-sign-in-alt\"></i>Login</a></div></div></div></header><main class=\"conteudoPrincipal\"><div><h1> Listagem de vagas </h1><table id=\"vagas\" class=\"table table-striped table-hover\"><thead class=\"thead-dark\"><tr><td>ID</td><td>Nome da Vaga</td><td>Nome do Cliente</td><td>Nome do candidato</td><td>Tipo do evento</td><td>Data e hora do evento</td><td>Valor cobrado</td><td>Quem gerou a cobrança</td><td>Ano/Periodo da cobrança</td><td>Valor Perdido</td><td>Motivo da Perda</td></tr></thead>");
 
-  var for__10 = 0;
-
-  marko_forEach(data.periodos, function(periodo) {
-    var keyscope__11 = "[" + ((for__10++) + "]");
-
-    out.w("<tr id=\"periodo_" +
-      marko_escapeXmlAttr(periodo.periodo) +
-      "\"><td>" +
-      marko_escapeXml(periodo.periodo) +
-      "</td></tr>");
-  });
-
-  out.w("</table><table id=\"vagas\"><tr><td>ID</td><td>Nome da Vaga</td><td>Nome do Cliente</td><td>Nome do candidato</td><td>Tipo do evento</td><td>Data e hora do evento</td><td>Valor cobrado</td><td>Quem gerou a cobrança</td><td>Ano/Periodo da cobrança</td><td>Valor Perdido</td><td>Motivo da Perda</td></tr>");
-
-  var for__27 = 0;
+  var for__33 = 0;
 
   marko_forEach(data.vagas, function(vaga) {
-    var keyscope__28 = "[" + ((for__27++) + "]");
+    var keyscope__34 = "[" + ((for__33++) + "]");
 
     out.w("<tr id=\"vaga_" +
       marko_escapeXmlAttr(vaga.id) +
@@ -86,13 +72,13 @@ function render(input, out, __component, component, state) {
       "\" data-type=\"remocao\">Remover</a></td></tr>");
   });
 
-  out.w("</table> <script src=\"estatico/js/remove-vaga.js\">\r\n        </script>");
+  out.w("</table> <script src=\"estatico/js/remove-vaga.js\">\r\n            </script></div></main><footer class=\"rodape\"><div class=\"container\"><div class=\"row align-items-center\"><div class=\"col-4\"><h1 class=\"logo\"><img src=\"/estatico/imagens/logo-rodape.png\" class=\"logo-rodape\"></h1></div><div class=\"col-8\"><ul class=\"redesSociais\"><li><a href=\"https://www.facebook.com/huntercofanpage/\" class=\"compartilhar-facebook\" target=\"_blank\">/HunterCoFanPage</a></li><li><a href=\"https://www.linkedin.com/company/hunterco/\" class=\"compartilhar-linkedin\" target=\"_blank\">/HunterCo</a></li></ul></div></div></div></footer>");
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "47");
+  await_reorderer_tag({}, out, __component, "65");
 
-  out.w("</body> </html>");
+  out.w("</body></html>");
 }
 
 marko_template._ = marko_renderer(render, {
