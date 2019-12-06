@@ -1,23 +1,11 @@
+const { check, validationResult } = require('express-validator/check');
 const VagaDao = require('../infra/vaga-dao');
-
 const db = require('../../config/database');
 
 module.exports = (app) => {
-    app.get('/', function(req, resp){
-        resp.send(
-            `
-            <html>
-                <head>
-                    <meta charset="utf-8">
-                </head>
-                <body>
-                    <h1> Hunter Co </h1>
-                    <a href="/vagas"> Lista de Vagas </a>
-                    <br>
-                    <a href="/dados"> Dados qualitativos e quantitativos </a>
-                </body> 
-            </html>
-            `
+    app.get('/', function(req, resp) {
+        resp.marko(
+            require('../views/base/home/home.marko')
         );
     });
 
@@ -63,9 +51,23 @@ module.exports = (app) => {
     
     });
 
-    app.post('/vagas', function(req,resp){
+    app.post('/vagas', [
+        check('job_type').isLength({ min: 5 }),
+        check('client_id').isLength({ min: 5 }),
+        check('candidate').isLength({ min: 5 }),
+        check('value').isCurrency()
+        ]
+        ,function(req,resp){
         console.log(req.body);
         const vagaDao = new VagaDao(db);
+
+        const erros = validationResult(req);
+        if(!erros.isEmpty()){
+            return resp.marko(require('../views/vagas/form/form.marko'),
+                {vaga : {}}
+            );
+        }
+
         vagaDao.adiciona(req.body)
             .then(resp.redirect('/vagas'))
             .catch(erro => console.log(erro));
