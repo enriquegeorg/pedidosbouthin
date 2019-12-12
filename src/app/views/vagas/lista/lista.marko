@@ -21,7 +21,8 @@
             </div>
     </header>
     <main class="conteudoPrincipal">
-        <div >
+        <div class="container">
+        
                 <h1> Listagem de vagas </h1>
 
                 <table id="vagas"  class="table table-striped table-hover">
@@ -32,16 +33,13 @@
                             <td>Nome do Cliente</td>
                             <td>Nome do candidato</td>
                             <td>Tipo do evento</td>
-                            <td>Data e hora do evento</td>
-                            <td>Valor cobrado</td>
-                            <td>Quem gerou a cobrança</td>
-                            <td>Ano/Periodo da cobrança</td>
-                            <td>Valor Perdido</td>
-                            <td>Motivo da Perda</td>
+                            <td>Editar</td>
+                            <td>Remover</td>
                         </tr>
                     </thead>
                             <tr id="vaga_${vaga.id}"  for (vaga in data.vagas)>
-                            <td>${vaga.id}</td>
+                            <a href="/form/${vaga.id}" class="parent" style="display: block;width: 300px;"></a>
+                            <td><a href="/vagas/view/${vaga.id}">${vaga.id}</a></td>
                             <td>${vaga.job_type}</td>
                             <td>${vaga.client_id}</td>
                             <td>${vaga.candidate}</td>
@@ -51,12 +49,6 @@
                             <% } else { %>
                                 <td>Candidato contratado</td>
                             <% } %>
-                            <td>${vaga.dt_event}</td>
-                            <td>${vaga.value}</td>
-                            <td>${vaga.billed_by}</td>
-                            <td>${vaga.periodo_cobranca}</td>
-                            <td>${vaga.lost_value}</td>
-                            <td>${vaga.refund_reason}</td>
                             <td><a href="/vagas/form/${vaga.id}">Editar</a></td>
                             <td><a href="#" data-ref="${vaga.id}" data-type="remocao">Remover</a></td>
                         </tr>

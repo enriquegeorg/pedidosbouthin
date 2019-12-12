@@ -10,8 +10,8 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
     marko_loadTag = marko_helpers.t,
     component_globals_tag = marko_loadTag(require("marko/src/components/taglib/component-globals-tag")),
     marko_forEach = marko_helpers.f,
-    marko_escapeXml = marko_helpers.x,
     marko_escapeXmlAttr = marko_helpers.xa,
+    marko_escapeXml = marko_helpers.x,
     init_components_tag = marko_loadTag(require("marko/src/components/taglib/init-components-tag")),
     await_reorderer_tag = marko_loadTag(require("marko/src/taglibs/async/await-reorderer-tag"));
 
@@ -22,18 +22,22 @@ function render(input, out, __component, component, state) {
 
   component_globals_tag({}, out);
 
-  out.w("<header class=\"cabecalhoPrincipal\"><div class=\"container\"><div class=\"row align-items-center\"><div class=\"col-4\"><h1 class=\"logo\"><img src=\"/estatico/imagens/logo-cabecalho.png\" alt=\"Hunter Co\" height=\"35px\" width=\"auto\"></h1></div><div class=\"cabecalhoPrincipal-navegacao col-8\"><a href=\"#\" class=\"login\"><i class=\"fas fa-sign-in-alt\"></i>Login</a></div></div></div></header><main class=\"conteudoPrincipal\"><div><h1> Listagem de vagas </h1><table id=\"vagas\" class=\"table table-striped table-hover\"><thead class=\"thead-dark\"><tr><td>ID</td><td>Nome da Vaga</td><td>Nome do Cliente</td><td>Nome do candidato</td><td>Tipo do evento</td><td>Data e hora do evento</td><td>Valor cobrado</td><td>Quem gerou a cobrança</td><td>Ano/Periodo da cobrança</td><td>Valor Perdido</td><td>Motivo da Perda</td></tr></thead>");
+  out.w("<header class=\"cabecalhoPrincipal\"><div class=\"container\"><div class=\"row align-items-center\"><div class=\"col-4\"><h1 class=\"logo\"><img src=\"/estatico/imagens/logo-cabecalho.png\" alt=\"Hunter Co\" height=\"35px\" width=\"auto\"></h1></div><div class=\"cabecalhoPrincipal-navegacao col-8\"><a href=\"#\" class=\"login\"><i class=\"fas fa-sign-in-alt\"></i>Login</a></div></div></div></header><main class=\"conteudoPrincipal\"><div class=\"container\"><h1> Listagem de vagas </h1><table id=\"vagas\" class=\"table table-striped table-hover\"><thead class=\"thead-dark\"><tr><td>ID</td><td>Nome da Vaga</td><td>Nome do Cliente</td><td>Nome do candidato</td><td>Tipo do evento</td><td>Editar</td><td>Remover</td></tr></thead>");
 
-  var for__33 = 0;
+  var for__29 = 0;
 
   marko_forEach(data.vagas, function(vaga) {
-    var keyscope__34 = "[" + ((for__33++) + "]");
+    var keyscope__30 = "[" + ((for__29++) + "]");
 
     out.w("<tr id=\"vaga_" +
       marko_escapeXmlAttr(vaga.id) +
-      "\"><td>" +
+      "\"><a href=\"/form/" +
+      marko_escapeXmlAttr(vaga.id) +
+      "\" class=\"parent\" style=\"display: block;width: 300px;\"></a><td><a href=\"/vagas/view/" +
+      marko_escapeXmlAttr(vaga.id) +
+      "\">" +
       marko_escapeXml(vaga.id) +
-      "</td><td>" +
+      "</a></td><td>" +
       marko_escapeXml(vaga.job_type) +
       "</td><td>" +
       marko_escapeXml(vaga.client_id) +
@@ -53,19 +57,7 @@ function render(input, out, __component, component, state) {
 
     } 
 
-    out.w("<td>" +
-      marko_escapeXml(vaga.dt_event) +
-      "</td><td>" +
-      marko_escapeXml(vaga.value) +
-      "</td><td>" +
-      marko_escapeXml(vaga.billed_by) +
-      "</td><td>" +
-      marko_escapeXml(vaga.periodo_cobranca) +
-      "</td><td>" +
-      marko_escapeXml(vaga.lost_value) +
-      "</td><td>" +
-      marko_escapeXml(vaga.refund_reason) +
-      "</td><td><a href=\"/vagas/form/" +
+    out.w("<td><a href=\"/vagas/form/" +
       marko_escapeXmlAttr(vaga.id) +
       "\">Editar</a></td><td><a href=\"#\" data-ref=\"" +
       marko_escapeXmlAttr(vaga.id) +
@@ -76,7 +68,7 @@ function render(input, out, __component, component, state) {
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "65");
+  await_reorderer_tag({}, out, __component, "57");
 
   out.w("</body></html>");
 }

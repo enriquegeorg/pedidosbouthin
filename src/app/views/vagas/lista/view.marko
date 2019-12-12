@@ -22,52 +22,42 @@
     </header>
     <main class="conteudoPrincipal">
             <div class="container">
-                <h1>Cadastro de Vagas</h1>
-
-                <div if(data.errosValidacao)>
-                    <div class="alert alert-danger" for(erro in data.errosValidacao)>
-                        ${erro.msg}
-                    </div>
-                </div>
-
-                <form action="/vagas/form" method="post">
-
-                    <div if(data.vaga.id)>
-                        <input type="hidden" name="_method" value="PUT">
-                        <input type="hidden" id="id" name="id" value="${data.vaga.id}" class="form-control" />
-                    </div>
+                <h1>Visualização de Vaga</h1>
                     <div class="form-group">
                         <label for="job_type">Nome da vaga:</label>
-                        <input type="text" id="job_type" name="job_type" value="${data.vaga.job_type}" placeholder="coloque o nome da vaga" class="form-control" />
+                        <input disabled type="text" id="job_type" name="job_type" value="${data.vaga.job_type}" placeholder="coloque o nome da vaga" class="form-control" />
                     </div>
                      <div class="form-group">
                         <label for="client_id">Nome do cliente:</label>
-                        <input type="text" id="client_id" name="client_id" value="${data.vaga.client_id}" placeholder="coloque o nome do cliente" class="form-control" />
+                        <input disabled type="text" id="client_id" name="client_id" value="${data.vaga.client_id}" placeholder="coloque o nome do cliente" class="form-control" />
                     </div>
                      <div class="form-group">
                         <label for="candidate">Nome do candidato:</label>
-                        <input type="text" id="candidate" name="candidate" value="${data.vaga.candidate}" placeholder="coloque o nome do candidato"  class="form-control"/>
+                        <input disabled type="text" id="candidate" name="candidate" value="${data.vaga.candidate}" placeholder="coloque o nome do candidato"  class="form-control"/>
                     </div>
                      <div class="form-group">
-                    <label for="value">Valor:</label>
-                        <input type="text" id="value" name="value" value="${data.vaga.value}" placeholder="150.25"  class="form-control"/>
+                    <% if (vaga.value != "0") %>
+                    <% { %>
+                        <label for="value">Valor:</label>
+                            <input type="text" id="value" name="value" value="${data.vaga.value}" placeholder="150.25"  class="form-control"/>
+                    <% } else { %>
+                    <label for="value">Valor Perdido:</label>
+                        <input disabled type="text" id="lost_value" name="lost_value" value="${data.vaga.lost_value}" placeholder="150.25"  class="form-control"/>
+                    <% } %>
                     </div>
                      <div class="form-group">
                         <label for="refund_reason">Motivo da perda:</label>
-                        <textarea cols="20" rows="10"  id="refund_reason" name="refund_reason"  placeholder="descreva o motivo da perda" class="form-control">${data.vaga.refund_reason}</textarea>
+                        <textarea disabled cols="20" rows="10"  id="refund_reason" name="refund_reason"  placeholder="descreva o motivo da perda" class="form-control">${data.vaga.refund_reason}</textarea>
                     </div>
                      <div class="form-group">
                         <label for="billed_by">Nome de quem gerou a cobrança:</label>
-                        <input type="text" id="billed_by" name="billed_by" value="${data.vaga.billed_by}" placeholder="nome de quem gerou a cobranca"  class="form-control"/>
+                        <input disabled type="text" id="billed_by" name="billed_by" value="${data.vaga.billed_by}" placeholder="nome de quem gerou a cobranca"  class="form-control"/>
                     </div>
-                    <select name="eventtype" class="form-group">
-                        <option id="eventtype" name="eventtype" value="CANDIDATE_SENT">Candidato Enviado</option>
-                        <option id="eventtype" name="eventtype" value="CANDIDATE_APPROVED">Candidato Contratado</option>
-                    </select>
+                    <div class="form-group">
+                        <label for="eventtype">Tipo de evento:</label>
+                        <input disabled type="text" id="eventtype" name="eventtype" value="${data.vaga.eventtype}" placeholder="tipo do evento"  class="form-control"/>
+                    </div>
                     <br>
-
-                <input type="submit" value="Salvar" class="btn btn-primary"/>
-                </form>
             </div>
         </main>
         <footer class="rodape">
