@@ -29,7 +29,7 @@ function render(input, out, __component, component, state) {
     marko_escapeXmlAttr(data.vaga.candidate) +
     "\" placeholder=\"coloque o nome do candidato\" class=\"form-control\"></div><div class=\"form-group\">");
 
-  if (vaga.value != "0") 
+  if (data.vaga.value > 0) 
 
   { 
 
@@ -49,13 +49,27 @@ function render(input, out, __component, component, state) {
     marko_escapeXml(data.vaga.refund_reason) +
     "</textarea></div><div class=\"form-group\"><label for=\"billed_by\">Nome de quem gerou a cobrança:</label><input disabled type=\"text\" id=\"billed_by\" name=\"billed_by\" value=\"" +
     marko_escapeXmlAttr(data.vaga.billed_by) +
-    "\" placeholder=\"nome de quem gerou a cobranca\" class=\"form-control\"></div><div class=\"form-group\"><label for=\"eventtype\">Tipo de evento:</label><input disabled type=\"text\" id=\"eventtype\" name=\"eventtype\" value=\"" +
-    marko_escapeXmlAttr(data.vaga.eventtype) +
-    "\" placeholder=\"tipo do evento\" class=\"form-control\"></div><br></div></main><footer class=\"rodape\"><div class=\"container\"><div class=\"row align-items-center\"><div class=\"col-4\"><h1 class=\"logo\"><img src=\"/estatico/imagens/logo-rodape.png\" class=\"logo-rodape\"></h1></div><div class=\"col-8\"><ul class=\"redesSociais\"><li><a href=\"https://www.facebook.com/huntercofanpage/\" class=\"compartilhar-facebook\" target=\"_blank\">/HunterCoFanPage</a></li><li><a href=\"https://www.linkedin.com/company/hunterco/\" class=\"compartilhar-linkedin\" target=\"_blank\">/HunterCo</a></li></ul></div></div></div></footer>");
+    "\" placeholder=\"nome de quem gerou a cobranca\" class=\"form-control\"></div><div class=\"form-group\"><label for=\"eventtype\">Tipo de evento:</label>");
+
+  if (data.vaga.eventtype == "CANDIDATE_SENT") 
+
+  { 
+
+  out.w("<input disabled type=\"text\" id=\"eventtype\" name=\"eventtype\" value=\"Candidato Enviado\" placeholder=\"tipo do evento\" class=\"form-control\">");
+
+  } else { 
+
+  out.w("<input disabled type=\"text\" id=\"eventtype\" name=\"eventtype\" value=\"Candidato Contratado\" placeholder=\"tipo do evento\" class=\"form-control\">");
+
+  } 
+
+  out.w("</div><br><input type=\"submit\" value=\"Editar\" onclick=\"window.location='/vagas/form/" +
+    marko_escapeXmlAttr(data.vaga.id) +
+    "';\"> </div></main><footer class=\"rodape\"><div class=\"container\"><div class=\"row align-items-center\"><div class=\"col-4\"><h1 class=\"logo\"><img src=\"/estatico/imagens/logo-rodape.png\" class=\"logo-rodape\"></h1></div><div class=\"col-8\"><ul class=\"redesSociais\"><li><a href=\"https://www.facebook.com/huntercofanpage/\" class=\"compartilhar-facebook\" target=\"_blank\">/HunterCoFanPage</a></li><li><a href=\"https://www.linkedin.com/company/hunterco/\" class=\"compartilhar-linkedin\" target=\"_blank\">/HunterCo</a></li></ul></div></div></div></footer>");
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "55");
+  await_reorderer_tag({}, out, __component, "57");
 
   out.w("</body></html>");
 }

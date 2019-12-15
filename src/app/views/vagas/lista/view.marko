@@ -27,16 +27,16 @@
                         <label for="job_type">Nome da vaga:</label>
                         <input disabled type="text" id="job_type" name="job_type" value="${data.vaga.job_type}" placeholder="coloque o nome da vaga" class="form-control" />
                     </div>
-                     <div class="form-group">
+                    <div class="form-group">
                         <label for="client_id">Nome do cliente:</label>
                         <input disabled type="text" id="client_id" name="client_id" value="${data.vaga.client_id}" placeholder="coloque o nome do cliente" class="form-control" />
                     </div>
-                     <div class="form-group">
+                    <div class="form-group">
                         <label for="candidate">Nome do candidato:</label>
                         <input disabled type="text" id="candidate" name="candidate" value="${data.vaga.candidate}" placeholder="coloque o nome do candidato"  class="form-control"/>
                     </div>
-                     <div class="form-group">
-                    <% if (vaga.value != "0") %>
+                    <div class="form-group">
+                    <% if (data.vaga.value > 0) %>
                     <% { %>
                         <label for="value">Valor:</label>
                             <input type="text" id="value" name="value" value="${data.vaga.value}" placeholder="150.25"  class="form-control"/>
@@ -45,19 +45,25 @@
                         <input disabled type="text" id="lost_value" name="lost_value" value="${data.vaga.lost_value}" placeholder="150.25"  class="form-control"/>
                     <% } %>
                     </div>
-                     <div class="form-group">
+                    <div class="form-group">
                         <label for="refund_reason">Motivo da perda:</label>
                         <textarea disabled cols="20" rows="10"  id="refund_reason" name="refund_reason"  placeholder="descreva o motivo da perda" class="form-control">${data.vaga.refund_reason}</textarea>
                     </div>
-                     <div class="form-group">
+                    <div class="form-group">
                         <label for="billed_by">Nome de quem gerou a cobrança:</label>
                         <input disabled type="text" id="billed_by" name="billed_by" value="${data.vaga.billed_by}" placeholder="nome de quem gerou a cobranca"  class="form-control"/>
                     </div>
                     <div class="form-group">
-                        <label for="eventtype">Tipo de evento:</label>
-                        <input disabled type="text" id="eventtype" name="eventtype" value="${data.vaga.eventtype}" placeholder="tipo do evento"  class="form-control"/>
+                    <label for="eventtype">Tipo de evento:</label>
+                    <% if (data.vaga.eventtype == "CANDIDATE_SENT") %>
+                    <% { %>
+                        <input disabled type="text" id="eventtype" name="eventtype" value="Candidato Enviado" placeholder="tipo do evento"  class="form-control"/>
+                    <% } else { %>
+                        <input disabled type="text" id="eventtype" name="eventtype" value="Candidato Contratado" placeholder="tipo do evento"  class="form-control"/>
+                    <% } %>
                     </div>
                     <br>
+                    <input type="submit" value="Editar" onclick="window.location='/vagas/form/${data.vaga.id}';" /> 
             </div>
         </main>
         <footer class="rodape">

@@ -61,9 +61,17 @@
                         <input type="text" id="billed_by" name="billed_by" value="${data.vaga.billed_by}" placeholder="nome de quem gerou a cobranca"  class="form-control"/>
                     </div>
                     <select name="eventtype" class="form-group">
-                        <option id="eventtype" name="eventtype" value="CANDIDATE_SENT">Candidato Enviado</option>
-                        <option id="eventtype" name="eventtype" value="CANDIDATE_APPROVED">Candidato Contratado</option>
+                        <% if (data.vaga.eventtype == "CANDIDATE_SENT") %>
+                        <% { %>
+                            <option id="eventtype" name="eventtype" value="CANDIDATE_APPROVED" selected="selected">Candidato Contratado</option>
+                            <option id="eventtype" name="eventtype" value="CANDIDATE_SENT">Candidato Enviado</option>
+                        <% } else { %>
+                            <option id="eventtype" name="eventtype" value="CANDIDATE_SENT" selected="selected">Candidato Enviado</option>
+                            <option id="eventtype" name="eventtype" value="CANDIDATE_APPROVED">Candidato Contratado</option>
+                        <% } %>
+                        
                     </select>
+                    ${data.vaga.eventtype}
                     <br>
 
                 <input type="submit" value="Salvar" class="btn btn-primary"/>

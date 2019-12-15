@@ -11,7 +11,7 @@ class VagaController {
             edicao: '/vagas/form/:id',
             delecao: '/vagas/:id',
             dadosperiodo: '/dados',
-            visualizaVaga: '/vagas/view/:id'
+            visualizaVaga: '/vagas/view/:id',
         }
     }
 
@@ -95,7 +95,7 @@ class VagaController {
         return function(req, resp){
             const vagaDao = new VagaDao(db);
             vagaDao.valoresPorPeriodo().then(periodos => resp.marko(
-                require('../views/vagas/lista/dados.marko'),
+                require('../views/vagas/lista/view.marko'),
                 {
                     periodos: periodos
                 })
