@@ -2,6 +2,8 @@ const { check, validationResult } = require('express-validator/check');
 const VagaDao = require('../infra/vaga-dao');
 const db = require('../../config/database');
 
+const templates = require('../views/templates');
+
 class VagaController {
 
     static rotas(){
@@ -18,8 +20,7 @@ class VagaController {
     lista(){
         return function(req,resp){
             const vagaDao = new VagaDao(db);
-            vagaDao.lista().then(vagas => resp.marko(
-                    require('../views/vagas/lista/lista.marko'),
+            vagaDao.lista().then(vagas => resp.marko(templates.vagas.lista,
                     {
                         vagas: vagas
                     })
@@ -29,7 +30,7 @@ class VagaController {
 
     formularioCadastro() {
         return function(req,resp){
-            resp.marko(require('../views/vagas/form/form.marko'), { vaga: {}})
+            resp.marko(templates.vagas.form, { vaga: {}})
         };
     }
 
@@ -40,8 +41,7 @@ class VagaController {
         
             vagaDao.buscaPorId(id)
                 .then(vaga => 
-                    resp.marko(
-                        require('../views/vagas/form/form.marko'),
+                    resp.marko(templates.vagas.form,
                         { vaga: vaga }
                     )
                 )
@@ -56,7 +56,7 @@ class VagaController {
     
             const erros = validationResult(req);
             if(!erros.isEmpty()){
-                return resp.marko(require('../views/vagas/form/form.marko'),
+                return resp.marko(templates.vagas.form,
                     {
                         vaga: req.body,
                         errosValidacao: erros.array()
@@ -94,8 +94,7 @@ class VagaController {
     valoresPorPeriodo(){
         return function(req, resp){
             const vagaDao = new VagaDao(db);
-            vagaDao.valoresPorPeriodo().then(periodos => resp.marko(
-                require('../views/vagas/lista/view.marko'),
+            vagaDao.valoresPorPeriodo().then(periodos => resp.marko(templates.vagas.valoresperiodo,
                 {
                     periodos: periodos
                 })
@@ -111,8 +110,7 @@ class VagaController {
             debugger;
             vagaDao.buscaPorId(id)
                 .then(vaga => 
-                    resp.marko(
-                        require('../views/vagas/lista/view.marko'),
+                    resp.marko(templates.vagas.visualiza,
                         { vaga: vaga }
                     )
                 )
