@@ -160,6 +160,68 @@ class VagaDao {
             )
         });
     }
+    candidadosMaisRejeitados(){
+        return new Promise((resolve, reject) => {
+            this._db.all(
+                `
+                SELECT candidate AS nome_candidato, 
+                count(candidate) as qtd_rejeicoes 
+                FROM vagas 
+                WHERE eventtype='CANDIDATE_SENT' AND lost_value > 0 
+                GROUP BY nome_candidato 
+                HAVING count(nome_candidato) > 1 
+                ORDER BY qtd_rejeicoes DESC LIMIT 10
+                `
+                ,
+                (erro,resultados) => {
+                   if (erro) return reject('Não foi possível verificar quais foram os candidados mais rejeitados');
+                   
+                   return resolve(resultados);
+                }
+            )
+        });
+    }
+    clienteQueMaisRejeitam(){
+        return new Promise((resolve, reject) => {
+            this._db.all(
+                `
+                SELECT client_id AS nome_cliente, 
+                count(client_id) as qtd_rejeicoes 
+                FROM vagas 
+                WHERE eventtype='CANDIDATE_SENT' AND lost_value > 0 
+                GROUP BY nome_cliente 
+                HAVING count(nome_cliente) > 1 
+                ORDER BY qtd_rejeicoes DESC LIMIT 10
+                `
+                ,
+                (erro,resultados) => {
+                   if (erro) return reject('Não foi possível encontrar os clientes que mais rejeitam candidatos');
+                   
+                   return resolve(resultados);
+                }
+            )
+        });
+    }
+    clienteRecusaramTodos(){
+        return new Promise((resolve, reject) => {
+            this._db.all(
+                `
+                SELECT v2.client_id as clientes_recusaram_todos, 
+                count(v2.client_id) as qtd_rejeicoes
+                FROM (SELECT client_id FROM vagas WHERE eventtype='CANDIDATE_SENT' AND lost_value > 0 GROUP BY client_id HAVING count(client_id) > 0 ORDER BY count(client_id) DESC) as v2
+                INNER JOIN vagas as v
+                WHERE v.client_id=v2.client_id AND v.eventtype='CANDIDATE_APPROVED' 
+                GROUP BY v.client_id HAVING count(v.client_id) < 1 
+                `
+                ,
+                (erro,resultados) => {
+                   if (erro) return reject('Não foi possível encontrar os clientes que rejeitam todos os candidatos');
+                   
+                   return resolve(resultados);
+                }
+            )
+        });
+    }
 }
 
 module.exports = VagaDao;

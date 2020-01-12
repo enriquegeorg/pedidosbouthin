@@ -12,8 +12,11 @@ class VagaController {
             cadastro: '/vagas/form',
             edicao: '/vagas/form/:id',
             delecao: '/vagas/:id',
-            dadosperiodo: '/dados',
+            dadosPeriodo: '/dados',
             visualizaVaga: '/vagas/view/:id',
+            dadosCandidatos:'/dados/candidatos',
+            dadosClientes:'/dados/clientes',
+            dadosClientesRecusa: '/dados/clientesrecusa',
         }
     }
 
@@ -94,9 +97,39 @@ class VagaController {
     valoresPorPeriodo(){
         return function(req, resp){
             const vagaDao = new VagaDao(db);
-            vagaDao.valoresPorPeriodo().then(periodos => resp.marko(templates.vagas.valoresperiodo,
+            vagaDao.valoresPorPeriodo().then(periodos => resp.marko(templates.vagas.valoresPeriodo,
                 {
                     periodos: periodos
+                })
+            ).catch(erro => console.log(erro));
+        };
+    }
+    dadosCandidatos(){
+        return function(req, resp){
+            const vagaDao = new VagaDao(db);
+            vagaDao.dadosCandidatos().then(candidatos => resp.marko(templates.vagas.dadosCandidatos,
+                {
+                    candidatos: candidatos
+                })
+            ).catch(erro => console.log(erro));
+        };
+    }
+    dadosClientes(){
+        return function(req, resp){
+            const vagaDao = new VagaDao(db);
+            vagaDao.dadosClientes().then(clientes => resp.marko(templates.vagas.dadosClientes,
+                {
+                    clientes: clientes
+                })
+            ).catch(erro => console.log(erro));
+        };
+    }
+    clientesRecusaramTodos(){
+        return function(req, resp){
+            const vagaDao = new VagaDao(db);
+            vagaDao.dadosClientesRecusa().then(clientesRecusa => resp.marko(templates.vagas.dadosClientesRecusa,
+                {
+                    clientesRecusa: clientesRecusa
                 })
             ).catch(erro => console.log(erro));
         };
