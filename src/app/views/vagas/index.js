@@ -4,6 +4,6 @@ module.exports = {
     valoresPeriodo: require('../vagas/lista/dados.marko'),
     dadosClientes: require('../vagas/lista/dadosClientes.marko'),
     dadosCandidatos: require('../vagas/lista/dadosCandidatos.marko'),
-    dadosClientesRecusa:require('../vagas/lista/dadosClientesRecusa.marko'),
+    dadosClientesRecusa: require('../vagas/lista/dadosClientesRecusa.marko'),
     visualiza: require('../vagas/lista/view.marko')
 }

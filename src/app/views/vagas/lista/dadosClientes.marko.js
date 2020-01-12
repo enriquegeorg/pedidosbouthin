@@ -22,21 +22,19 @@ function render(input, out, __component, component, state) {
 
   component_globals_tag({}, out);
 
-  out.w("<header class=\"cabecalhoPrincipal\"><div class=\"container\"><div class=\"row align-items-center\"><div class=\"col-4\"><h1 class=\"logo\"><img src=\"/estatico/imagens/logo-cabecalho.png\" alt=\"Hunter Co\" height=\"35px\" width=\"auto\"></h1></div><div class=\"cabecalhoPrincipal-navegacao col-8\"><a href=\"#\" class=\"login\"><i class=\"fas fa-sign-in-alt\"></i>Login</a></div></div></div></header><main class=\"conteudoPrincipal\"><div class=\"container\"><h1> Dados qualitativos e quantitativos </h1><h3> Valores por periodo </h3><table id=\"valores\" class=\"table table-striped table-hover\"><thead class=\"thead-dark\"><tr><td>Periodo</td><td>Valor</td><td>Valor Perdido</td></tr></thead>");
+  out.w("<header class=\"cabecalhoPrincipal\"><div class=\"container\"><div class=\"row align-items-center\"><div class=\"col-4\"><h1 class=\"logo\"><img src=\"/estatico/imagens/logo-cabecalho.png\" alt=\"Hunter Co\" height=\"35px\" width=\"auto\"></h1></div><div class=\"cabecalhoPrincipal-navegacao col-8\"><a href=\"#\" class=\"login\"><i class=\"fas fa-sign-in-alt\"></i>Login</a></div></div></div></header><main class=\"conteudoPrincipal\"><div class=\"container\"><h1> Dados qualitativos e quantitativos </h1><h3> Clientes que mais rejeitam candidatos </h3><table id=\"clientes\" class=\"table table-striped table-hover\"><thead class=\"thead-dark\"><tr><td>Nome do Cliente</td><td>Número de Rejeições</td></tr></thead>");
 
-  var for__26 = 0;
+  var for__25 = 0;
 
-  marko_forEach(data.periodos, function(periodo) {
-    var keyscope__27 = "[" + ((for__26++) + "]");
+  marko_forEach(data.clientes, function(cliente) {
+    var keyscope__26 = "[" + ((for__25++) + "]");
 
-    out.w("<tr id=\"periodo_" +
-      marko_escapeXmlAttr(periodo.periodo) +
+    out.w("<tr id=\"cliente_" +
+      marko_escapeXmlAttr(cliente.cliente) +
       "\"><td>" +
-      marko_escapeXml(periodo.periodo) +
-      "</td><td>R$ " +
-      marko_escapeXml(periodo.total_valor) +
-      "</td><td>R$ " +
-      marko_escapeXml(periodo.total_valor_perdido) +
+      marko_escapeXml(cliente.nome_cliente) +
+      "</td><td>" +
+      marko_escapeXml(cliente.qtd_rejeicoes) +
       "</td></tr>");
   });
 
@@ -44,7 +42,7 @@ function render(input, out, __component, component, state) {
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "44");
+  await_reorderer_tag({}, out, __component, "42");
 
   out.w("</body></html>");
 }

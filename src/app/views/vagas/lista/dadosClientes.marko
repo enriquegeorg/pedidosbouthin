@@ -23,19 +23,17 @@
     <main class="conteudoPrincipal">
         <div class="container">
             <h1> Dados qualitativos e quantitativos </h1>
-            <h3> Valores por periodo </h3>
-                <table id="valores" class="table table-striped table-hover">
+            <h3> Clientes que mais rejeitam candidatos </h3>
+                <table id="clientes" class="table table-striped table-hover">
                     <thead class="thead-dark">
                         <tr>
-                            <td>Periodo</td>
-                            <td>Valor</td>
-                            <td>Valor Perdido</td>
+                            <td>Nome do Cliente</td>
+                            <td>Número de Rejeições</td>
                         </tr>
                     </thead>
-                        <tr id="periodo_${periodo.periodo}"  for (periodo in data.periodos)>
-                            <td>${periodo.periodo}</td>
-                            <td>R$ ${periodo.total_valor}</td>
-                            <td>R$ ${periodo.total_valor_perdido}</td>
+                        <tr id="cliente_${cliente.cliente}"  for (cliente in data.clientes)>
+                            <td>${cliente.nome_cliente}</td>
+                            <td>${cliente.qtd_rejeicoes}</td>
                         </tr>
                 </table>
         </div>

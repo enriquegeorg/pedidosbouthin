@@ -107,7 +107,7 @@ class VagaController {
     dadosCandidatos(){
         return function(req, resp){
             const vagaDao = new VagaDao(db);
-            vagaDao.dadosCandidatos().then(candidatos => resp.marko(templates.vagas.dadosCandidatos,
+            vagaDao.candidadosMaisRejeitados().then(candidatos => resp.marko(templates.vagas.dadosCandidatos,
                 {
                     candidatos: candidatos
                 })
@@ -117,7 +117,7 @@ class VagaController {
     dadosClientes(){
         return function(req, resp){
             const vagaDao = new VagaDao(db);
-            vagaDao.dadosClientes().then(clientes => resp.marko(templates.vagas.dadosClientes,
+            vagaDao.clienteQueMaisRejeitam().then(clientes => resp.marko(templates.vagas.dadosClientes,
                 {
                     clientes: clientes
                 })
@@ -127,14 +127,14 @@ class VagaController {
     clientesRecusaramTodos(){
         return function(req, resp){
             const vagaDao = new VagaDao(db);
-            vagaDao.dadosClientesRecusa().then(clientesRecusa => resp.marko(templates.vagas.dadosClientesRecusa,
+            vagaDao.clienteRecusaramTodos().then(clientesRecusa => resp.marko(templates.vagas.dadosClientesRecusa,
                 {
                     clientesRecusa: clientesRecusa
                 })
             ).catch(erro => console.log(erro));
         };
     }
-//bugado - arrumar
+
     visualizaVaga(){
         return function(req, resp) {
             const id = req.params.id;
