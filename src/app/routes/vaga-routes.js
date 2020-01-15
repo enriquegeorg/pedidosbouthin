@@ -20,12 +20,5 @@ module.exports = (app) => {
     //ERRO 1 - TRATAR
     app.get(rotasVaga.visualizaVaga, vagaController.visualizaVaga());
 
-    app.get(rotasVaga.dadosPeriodo, vagaController.valoresPorPeriodo());
-
-    app.get(rotasVaga.dadosCandidatos, vagaController.dadosCandidatos());
-
-    app.get(rotasVaga.dadosClientes, vagaController.dadosClientes());
-
-    app.get(rotasVaga.dadosClientesRecusa, vagaController.clientesRecusaramTodos());
 }
         
