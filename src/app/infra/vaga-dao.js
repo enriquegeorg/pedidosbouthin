@@ -206,12 +206,21 @@ class VagaDao {
         return new Promise((resolve, reject) => {
             this._db.all(
                 `
-                SELECT v2.client_id as clientes_recusaram_todos, 
-                count(v2.client_id) as qtd_rejeicoes
-                FROM (SELECT client_id FROM vagas WHERE eventtype='CANDIDATE_SENT' AND lost_value > 0 GROUP BY client_id HAVING count(client_id) > 0 ORDER BY count(client_id) DESC) as v2
-                INNER JOIN vagas as v
-                WHERE v.client_id=v2.client_id AND v.eventtype='CANDIDATE_APPROVED' 
-                GROUP BY v.client_id HAVING count(v.client_id) < 1 
+                SELECT * FROM (
+                    SELECT client_id FROM vagas 
+                        WHERE eventtype='CANDIDATE_SENT' 
+                                 AND REFUND_REASON IS NOT NULL 
+                       GROUP BY client_id 
+                       ) as perdidos
+                LEFT JOIN (  
+                   -- aceitos
+                    SELECT client_id FROM vagas 
+                    WHERE eventtype='CANDIDATE_SENT'
+                         AND REFUND_REASON IS NULL
+                   GROUP BY client_id 
+                ) as  aprovados ON aprovados.client_id = perdidos.client_id
+                  where aprovados.client_id IS NULL
+                  LIMIT 10
                 `
                 ,
                 (erro,resultados) => {
