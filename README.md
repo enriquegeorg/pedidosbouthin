@@ -4,7 +4,22 @@ Desafio proposto para vaga de estagiário em desenvolvimento.
 How to start:
 
 npm install
+
 npm start
+
+Descrição da jornada: 
+tentei usar lowdb em cima de um projeto pronto (desafio para vaga de dev antigo da hunterco que achei no git) sem sucesso;
+tentei usar low db num projeto blank;
+dificuldade extrema de entender os projetos já feitos encontrados no git;
+aproveitei a promoção e assinei o alura, vou fazer o curso de 20 horas;
+decidi usar o sqlite3 pois é a linguagem que eu conheço e coincidentemente é a que o curso do alura cita;
+muita dificuldade em conciliar o tempo de estudo, produção e demais projetos pessoais;
+quanto a amostragem dos dados, farei a tratativa deles via query sql pois é o que conheço, imagino que poderia faze-lo com os dados que já busquei em outra requisição ao banco, mas não detenho conhecimento.
+implementei as funções de update e delete da listagem por conta do curso também realizar. Tem também uma função de busca por id que falta capturar o id via post no form.;
+estou com dificuldade de mostrar duas consultas na mesma rota usando metodo dao.;
+facilitação do código com as metodologias de boas práticas de programação;
+problemas para entender a lógica por trás do item 4 do desafio;
+dúvidas esclarecidas pelo Flávio;
 
 ____
 
