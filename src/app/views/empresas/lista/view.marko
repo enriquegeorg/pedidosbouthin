@@ -1,0 +1,96 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="/estatico/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="/estatico/css/fontawesome.min.css" />
+        <link rel="stylesheet" href="/estatico/css/huntercodesafio.css" />
+    </head>
+    <body>
+    <header class="cabecalhoPrincipal">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-4">
+                        <h1 class="logo"><img src="/estatico/imagens/logo-cabecalho.png" alt="Hunter Co" height="35px" width="auto" /></h1>
+                    </div>
+                    <div class="cabecalhoPrincipal-navegacao col-8">
+                        <a href="#" class="login">
+                            <i class="fas fa-sign-in-alt"></i>Login
+                        </a>
+                    </div>
+                </div>
+            </div>
+    </header>
+    <main class="conteudoPrincipal">
+            <div class="container">
+                <h1>Visualização de Empresa</h1>
+                    <div class="form-group">
+                        <label for="razaosocial">Razão social:</label>
+                        <input  disabled type="text" id="razaosocial" name="razaosocial" value="${data.empresa.razaosocial}" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="nomefantasia">Nome Fantasia:</label>
+                        <input  disabled type="text" id="nomefantasia" name="nomefantasia" value="${data.empresa.nomefantasia}" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="cnpj">CNPJ:</label>
+                        <input  disabled type="text" id="cnpj" name="cnpj" value="${data.empresa.cnpj}" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="ie">IE:</label>
+                        <input  disabled type="ie" id="ie" name="ie" value="${data.empresa.ie}"  class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="im">IM:</label>
+                        <input  disabled type="im" id="im" name="im" value="${data.empresa.im}" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="cep">CEP:</label>
+                        <input  disabled type="cep" id="cep" name="cep" value="${data.empresa.cep}" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="bairro">Bairro:</label>
+                        <input  disabled type="bairro" id="bairro" name="bairro" value="${data.empresa.bairro}" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="cidade">Cidade:</label>
+                        <input  disabled type="cidade" id="cidade" name="cidade" value="${data.empresa.cidade}" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="endereco">Endereço:</label>
+                        <input  disabled type="endereco" id="endereco" name="endereco" value="${data.empresa.endereco}" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="telefone1">Telefone principal:</label>
+                        <input  disabled type="telefone1" id="telefone1" name="telefone1" value="${data.empresa.telefone1}" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="telefone2">Telefone Secundário:</label>
+                        <input  disabled type="telefone2" id="telefone2" name="telefone1" value="${data.empresa.telefone2}" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input  disabled type="email" id="email" name="email" value="${data.empresa.email}" class="form-control" />
+                    </div>
+                    <br>
+                    <input type="submit" value="Editar" onclick="window.location='/empresas/form/${data.empresa.id}';" /> 
+            </div>
+        </main>
+        <footer class="rodape">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-4">
+                        <h1 class="logo">
+                            <img src="/estatico/imagens/logo-rodape.png" class="logo-rodape"/>
+                        </h1>
+                    </div>
+                    <div class="col-8">
+                        <ul class="redesSociais">
+                            <li><a href="https://www.facebook.com/huntercofanpage/" class="compartilhar-facebook" target="_blank">/HunterCoFanPage</a></li>
+                            <li><a href="https://www.linkedin.com/company/hunterco/" class="compartilhar-linkedin" target="_blank">/HunterCo</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
